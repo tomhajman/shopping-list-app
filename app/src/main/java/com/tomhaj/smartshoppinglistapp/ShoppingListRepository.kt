@@ -2,6 +2,7 @@ package com.tomhaj.smartshoppinglistapp
 
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.dataObjects
+import com.tomhaj.smartshoppinglistapp.model.ShoppingList
 import kotlinx.coroutines.flow.Flow
 
 class ShoppingListRepository (val firestoreDB: FirebaseFirestore) {

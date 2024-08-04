@@ -1,4 +1,4 @@
-package com.tomhaj.smartshoppinglistapp
+package com.tomhaj.smartshoppinglistapp.views
 
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable

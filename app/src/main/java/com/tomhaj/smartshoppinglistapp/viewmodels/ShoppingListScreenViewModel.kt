@@ -1,4 +1,4 @@
-package com.tomhaj.smartshoppinglistapp
+package com.tomhaj.smartshoppinglistapp.viewmodels
 
 import androidx.lifecycle.ViewModel
 

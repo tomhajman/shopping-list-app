@@ -1,4 +1,4 @@
-package com.tomhaj.smartshoppinglistapp
+package com.tomhaj.smartshoppinglistapp.model
 
 data class ShoppingListItem(
     val name: String,

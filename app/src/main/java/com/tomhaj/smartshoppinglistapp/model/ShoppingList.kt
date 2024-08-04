@@ -1,4 +1,4 @@
-package com.tomhaj.smartshoppinglistapp
+package com.tomhaj.smartshoppinglistapp.model
 
 class ShoppingList() {
     lateinit var name: String

@@ -1,4 +1,4 @@
-package com.tomhaj.smartshoppinglistapp
+package com.tomhaj.smartshoppinglistapp.views
 
 import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
@@ -22,6 +22,8 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
+import com.tomhaj.smartshoppinglistapp.Heading
+import com.tomhaj.smartshoppinglistapp.viewmodels.LoginScreenViewModel
 
 @Composable
 fun LoginScreen(navController: NavHostController) {
