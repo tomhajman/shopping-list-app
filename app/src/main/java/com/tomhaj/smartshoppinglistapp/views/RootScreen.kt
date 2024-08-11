@@ -36,7 +36,7 @@ fun RootScreen() {
             title = "Home",
             iconSelected = Icons.Filled.Home,
             iconUnselected = Icons.Outlined.Home,
-            route = "ShoppingListScreen"
+            route = "HomeScreen"
         ),
         MyNavItem(
             title = "Add",
@@ -58,7 +58,7 @@ fun RootScreen() {
                                     selectedItemIndex = index
                                     if (selectedItemIndex == 0) {
                                         navController.popBackStack(
-                                            route = "ShoppingListScreen",
+                                            route = "HomeScreen",
                                             inclusive = false
                                         )
                                     } else

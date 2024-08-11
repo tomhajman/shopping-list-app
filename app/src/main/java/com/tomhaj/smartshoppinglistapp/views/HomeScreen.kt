@@ -1,6 +1,8 @@
 package com.tomhaj.smartshoppinglistapp.views
 
+import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -15,38 +17,37 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavHostController
 import com.tomhaj.smartshoppinglistapp.Heading
 import com.tomhaj.smartshoppinglistapp.NormalText
 import com.tomhaj.smartshoppinglistapp.SmartShoppingListApp
-import com.tomhaj.smartshoppinglistapp.model.ShoppingListItem
+import com.tomhaj.smartshoppinglistapp.model.ShoppingList
 import com.tomhaj.smartshoppinglistapp.viewmodels.HomeScreenViewModel
-import com.tomhaj.smartshoppinglistapp.viewmodels.ShoppingListScreenViewModel
 
 @Composable
-fun ShoppingListScreen(listId: String?) {
-    val viewModel = viewModel { ShoppingListScreenViewModel(SmartShoppingListApp.repository, listId!!) }
+fun HomeScreen(nav : NavHostController) {
+    val viewModel = viewModel { HomeScreenViewModel(SmartShoppingListApp.repository) }
 
-    var queryState = viewModel.shoppingListItemsFlow.collectAsState(initial = emptyList())
-    var shoppingListItems = queryState.value
+    var queryState = viewModel.shoppingListQueryFlow.collectAsState(initial = emptyList())
+    var shoppingLists = queryState.value
 
     Column {
-        Text(text = "Shopping List Screen")
-        Text(text = "List ID: $listId")
-        DisplayItems(shoppingListItems = shoppingListItems)
+        DisplayShoppingLists(nav = nav, shoppingLists = shoppingLists)
     }
 }
 
+// Takes List<ShoppingLists> as param and displays list of ShoppingLists
 @Composable
-fun DisplayItems(shoppingListItems: List<ShoppingListItem>) {
+fun DisplayShoppingLists(nav : NavHostController, shoppingLists: List<ShoppingList>) {
     Surface(
         modifier = Modifier
             .padding(20.dp)
             .fillMaxWidth(), shape = RoundedCornerShape(10.dp), shadowElevation = 30.dp
     ) {
         Column(modifier = Modifier.padding(10.dp)) {
-            Heading("Shopping List Items")
+            Heading("Shopping Lists")
             LazyColumn(verticalArrangement = Arrangement.spacedBy(5.dp)) {
-                items(shoppingListItems) { shoppingListItem ->
+                items(shoppingLists) { shoppingList ->
                     Surface(
                         modifier = Modifier
                             .padding(5.dp)
@@ -54,10 +55,13 @@ fun DisplayItems(shoppingListItems: List<ShoppingListItem>) {
                         shape = RoundedCornerShape(10.dp),
                         shadowElevation = 30.dp
                     ) {
-                        Column {
-                            Text(text = shoppingListItem.name)
-                            Text(text = shoppingListItem.quantity.toString())
-                            Text(text = shoppingListItem.isChecked.toString())
+                        Button(onClick = {
+                            nav.navigate("ShoppingListScreen/${shoppingList.id}")
+                        }) {
+                            Column(modifier = Modifier.padding(5.dp)) {
+                                NormalText(s = shoppingList.name)
+                                Text(text = shoppingList.owner)
+                            }
                         }
                     }
                 }

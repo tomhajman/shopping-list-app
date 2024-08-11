@@ -23,11 +23,12 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import com.tomhaj.smartshoppinglistapp.Heading
+import com.tomhaj.smartshoppinglistapp.SmartShoppingListApp
 import com.tomhaj.smartshoppinglistapp.viewmodels.LoginScreenViewModel
 
 @Composable
 fun LoginScreen(navController: NavHostController) {
-    val viewModel = viewModel { LoginScreenViewModel() }
+    val viewModel = viewModel { LoginScreenViewModel(SmartShoppingListApp.repository) }
     val currentContext = LocalContext.current
 
     var email by remember { mutableStateOf("") }
@@ -64,7 +65,7 @@ fun LoginScreen(navController: NavHostController) {
                         email,
                         password,
                         {
-                            navController.navigate("ShoppingListScreen")
+                            navController.navigate("HomeScreen")
                         },
                         {
                             Toast.makeText(currentContext, "Login failed!", Toast.LENGTH_SHORT)
