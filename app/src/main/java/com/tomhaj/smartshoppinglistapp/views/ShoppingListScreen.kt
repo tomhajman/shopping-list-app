@@ -1,7 +1,9 @@
 package com.tomhaj.smartshoppinglistapp.views
 
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
@@ -54,10 +56,14 @@ fun DisplayItems(shoppingListItems: List<ShoppingListItem>) {
                         shape = RoundedCornerShape(10.dp),
                         shadowElevation = 30.dp
                     ) {
-                        Column {
-                            Text(text = shoppingListItem.name)
-                            Text(text = shoppingListItem.quantity.toString())
-                            Text(text = shoppingListItem.isChecked.toString())
+                        Row(modifier = Modifier.padding(10.dp)) {
+                            Column(modifier = Modifier.weight(3f)) {
+                                Text(text = shoppingListItem.name)
+                                Text(text = shoppingListItem.quantity.toString())
+                            }
+                            Box(modifier = Modifier.weight(1f)) {
+                                Text(text = shoppingListItem.isChecked.toString())
+                            }
                         }
                     }
                 }
