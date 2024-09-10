@@ -48,7 +48,7 @@ fun RootScreen() {
 
     Scaffold(
         bottomBar = {
-            if(currentRoute != "LoginScreen") {
+            if(currentRoute == "HomeScreen" || currentRoute == "AddShoppingListScreen") {
                 NavigationBar {
                     navItemsList.forEachIndexed { index, item ->
                         NavigationBarItem(

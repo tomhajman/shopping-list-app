@@ -18,6 +18,11 @@ class ShoppingListRepository (val firestoreDB: FirebaseFirestore) {
             .dataObjects<ShoppingList>()
     }
 
+    fun getShoppingListName(listId: String): Flow<String> {
+        return firestoreDB.collection("ShoppingLists").document(listId).dataObjects<ShoppingList>()
+            .map { it!!.name }
+    }
+
     fun getShoppingListItems(shoppingListId: String) : Flow<List<ShoppingListItem>> {
         val queryFlow : Flow<List<ShoppingListItem>> =
             firestoreDB.collection("ShoppingLists").document(shoppingListId).collection("items").dataObjects<ShoppingListItem>()

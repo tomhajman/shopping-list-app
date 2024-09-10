@@ -27,7 +27,7 @@ fun nav(navController: NavHostController) {
             route = "ShoppingListScreen/{listId}",
             arguments = listOf(navArgument("listId") { type = NavType.StringType })
         ) { backStackEntry ->
-            ShoppingListScreen(listId = backStackEntry.arguments?.getString("listId"))
+            ShoppingListScreen(listId = backStackEntry.arguments?.getString("listId"), navController)
         }
     }
 }
